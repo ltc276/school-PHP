@@ -14,10 +14,13 @@ class login {
         }
    
     } 
-     public function confrimlogin($user,$pass){
-        if($user=='abc@gmail.com'||$pass=='123456')
-        {
-            header('location:login.php');
+      public function confrimlogin($user, $pass)
+    {
+        if ($user != 'abc@gmail.com' || $pass != '123456') {
+
+            header('Location: login.php');
+            exit();
+
         }
     }
 }
