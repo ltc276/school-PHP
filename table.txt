@@ -3,10 +3,10 @@
 -- =========================================
 
 -- 1. Tạo database
-CREATE DATABASE demo2;
+CREATE DATABASE csdlot;
 
 -- Chọn database
-USE demo2;
+USE csdlot;
 
 
 -- =========================================
