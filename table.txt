@@ -1,0 +1,111 @@
+-- =========================================
+-- BÀI 5.1 - DATABASE demo2
+-- =========================================
+
+-- 1. Tạo database
+CREATE DATABASE csdlot;
+
+-- Chọn database
+USE csdlot;
+
+
+-- =========================================
+-- 2. Tạo bảng TAIKHOAN
+-- =========================================
+
+CREATE TABLE TAIKHOAN (
+    iduser INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    hodem VARCHAR(50),
+    ten VARCHAR(50),
+    phanquyen VARCHAR(20),
+    landangnhapcuoi DATETIME
+);
+
+-- Tạo chỉ mục cho password
+CREATE INDEX idx_password ON TAIKHOAN(password);
+
+
+-- =========================================
+-- 3. Tạo bảng CONGTY
+-- =========================================
+
+CREATE TABLE CONGTY (
+    idcty INT AUTO_INCREMENT PRIMARY KEY,
+    tencty VARCHAR(100) NOT NULL,
+    diachi VARCHAR(255),
+    dienthoai VARCHAR(20),
+    fax VARCHAR(20)
+);
+
+
+-- =========================================
+-- 4. Tạo bảng SANPHAM
+-- =========================================
+
+CREATE TABLE SANPHAM (
+    idsp INT AUTO_INCREMENT PRIMARY KEY,
+    tensp VARCHAR(100) NOT NULL,
+    gia DECIMAL(15,2),
+    mota TEXT,
+    hinh VARCHAR(255),
+    giamgia DECIMAL(5,2),
+    idcty INT,
+
+    CONSTRAINT fk_sanpham_congty
+    FOREIGN KEY (idcty) REFERENCES CONGTY(idcty)
+);
+
+
+-- =========================================
+-- 5. Thêm dữ liệu bảng TAIKHOAN
+-- =========================================
+
+INSERT INTO TAIKHOAN
+(username, password, hodem, ten, phanquyen, landangnhapcuoi)
+VALUES
+('admin01', '123456', 'Nguyen Van', 'An', 'Admin', '2026-09-01 08:30:00'),
+('admin02', '123456', 'Tran Thi', 'Binh', 'Admin', '2026-09-02 09:15:00'),
+('user01', 'abc123', 'Le Van', 'Cuong', 'User', '2026-09-03 10:20:00'),
+('user02', 'abc456', 'Pham Thi', 'Dung', 'User', '2026-09-04 14:10:00'),
+('user03', 'abc789', 'Hoang Van', 'Em', 'User', '2026-09-05 16:45:00');
+
+
+-- =========================================
+-- 6. Thêm dữ liệu bảng CONGTY
+-- =========================================
+
+INSERT INTO CONGTY
+(tencty, diachi, dienthoai, fax)
+VALUES
+('Cong ty Samsung', 'Quan 1, TP.HCM', '0281111111', '0281111112'),
+('Cong ty Apple', 'Quan 3, TP.HCM', '0282222222', '0282222223'),
+('Cong ty Dell', 'Quan 5, TP.HCM', '0283333333', '0283333334'),
+('Cong ty Asus', 'Quan 10, TP.HCM', '0284444444', '0284444445'),
+('Cong ty Lenovo', 'Quan 7, TP.HCM', '0285555555', '0285555556');
+
+
+-- =========================================
+-- 7. Thêm dữ liệu bảng SANPHAM
+-- =========================================
+
+INSERT INTO SANPHAM
+(tensp, gia, mota, hinh, giamgia, idcty)
+VALUES
+('Samsung Galaxy S24', 20000000, 'Dien thoai Samsung Galaxy S24', 's24.jpg', 5, 1),
+('iPhone 15', 22000000, 'Dien thoai Apple iPhone 15', 'iphone15.jpg', 10, 2),
+('Dell Inspiron 15', 18000000, 'Laptop Dell Inspiron 15', 'dell15.jpg', 8, 3),
+('Asus Vivobook 15', 16000000, 'Laptop Asus Vivobook 15', 'vivobook15.jpg', 7, 4),
+('Lenovo IdeaPad 3', 14000000, 'Laptop Lenovo IdeaPad 3', 'ideapad3.jpg', 6, 5);
+
+
+-- =========================================
+-- 8. Kiểm tra dữ liệu
+-- =========================================
+
+SELECT * FROM TAIKHOAN;
+
+SELECT * FROM CONGTY;
+
+SELECT * FROM SANPHAM;
