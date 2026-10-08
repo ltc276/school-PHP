@@ -11,7 +11,7 @@
     session_start();
     $email=$_POST["email"];
     $password=$_POST["password"];
-    $anh=$_POST["anh"];
+    //$anh=$_POST["anh"];
     $hoten=$_POST["hoten"];
     $dienthoai=$_POST["dienthoai"];
     $gioitinh=$_POST["gioitinh"];
@@ -20,6 +20,18 @@
     }
     else{
         $sothich=array();
+
+    }
+    $file=$_FILES["anhdaidien"]["name"];
+    $tmp=$_FILES["anhdaidien"]["tmp_name"];
+    $duoi=pathinfo($file,PATHINFO_EXTENSION);
+    if($duoi=="jpg"||$duoi=="png"||$duoi=="gif"){
+        $tenmoi="anhdaidien_".rand(0,99).".".$duoi;
+        move_uploaded_file($tmp,"uploads/".$tenmoi);
+
+    }
+    else{
+        echo "Không phải ảnh";
 
     }
     //cau7
@@ -61,10 +73,16 @@
                             <td>Password:</td>
                             <td><?php echo $password ?></td>
                         </tr>
+                        <tr>
+                            <td>Ảnh đại diện: </td>
+                            <td><?php echo "<img class='anh' id='anh' src='uploads/$tenmoi' />"; ?></td>
+                            <td><?php echo $tenmoi ?></td>
+                        </tr>
                          <tr>
                             <td>Họ tên: </td>
                             <td><?php echo $hoten ?></td>
                         </tr>
+                        
                          <tr>
                             <td>Điện thoại: </td>
                             <td><?php echo $dienthoai ?></td>

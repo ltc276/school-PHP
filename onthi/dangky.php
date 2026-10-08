@@ -23,7 +23,7 @@
                 </nav>
             <div class="content">
                 <h1>THÔNG TIN KHÁCH HÀNG</h1>
-                <form action="xuly.php" method="post">
+                <form action="xuly.php" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td>Thông tin tài khoản</td>
@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>Ảnh đại diện:</td>
-                        <td><input type="file" name="anh" id="" class=""></td>
+                        <td><input type="file" name="anhdaidien" id="" class=""></td>
                     </tr>
                       <tr>
                         <td>Quê quán:</td>
